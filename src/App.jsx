@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import MoviesPage from "./pages/MoviesPage";
@@ -33,9 +33,11 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <>
       <Navigation />
       <Routes>
+        {" "}
+        {}
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route
           path="/movies"
@@ -44,7 +46,7 @@ const App = () => {
         <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
