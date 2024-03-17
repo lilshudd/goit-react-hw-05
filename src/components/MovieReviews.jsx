@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import styles from "./MovieReviews.module.css";
 
@@ -12,9 +12,8 @@ const MovieReviews = ({ movieId }) => {
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
           {
-            headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZGNkOGM5YWQwMjQzZThkMDE2OWI2MzUxMGIwNmRhZCIsInN1",
+            params: {
+              api_key: "5dcd8c9ad0243e8d0169b63510b06dad",
             },
           }
         );
