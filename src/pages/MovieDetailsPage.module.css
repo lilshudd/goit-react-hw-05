@@ -20,13 +20,20 @@
   float: left;
 }
 
-.cast,
+cast,
 .reviews {
-  margin-top: 20px;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.cast:hover,
-.reviews:hover {
-  color: blue;
+.cast h3,
+.reviews h3 {
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.cast h3:hover,
+.reviews h3:hover {
+  text-decoration: underline;
 }

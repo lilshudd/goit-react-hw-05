@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./MovieReviews.module.css";
 
-const MovieReviews = ({ movieId }) => {
+const MovieReviews = () => {
+  const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {

@@ -6,8 +6,7 @@
 
 .title {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .search {
@@ -15,34 +14,38 @@
 }
 
 .searchInput {
-  width: 100%;
-  padding: 10px;
+  padding: 8px;
   font-size: 16px;
+  width: 100%;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+  border-radius: 4px;
 }
 
-.movieList {
-  list-style: none;
+.list {
+  list-style-type: none;
   padding: 0;
 }
 
-.movieItem {
-  margin-bottom: 10px;
+.item {
+  margin-bottom: 20px;
 }
 
-.movieLink {
-  text-decoration: none;
+.link {
   color: #333;
-  font-size: 18px;
-  display: block;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
-.movieLink:hover {
-  background-color: #f0f0f0;
+.link:hover {
+  color: #007bff;
+}
+
+.image {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 5px;
 }

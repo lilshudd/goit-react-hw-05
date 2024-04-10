@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import MovieCast from "../components/MovieCast";
 import MovieReviews from "../components/MovieReviews";
@@ -10,6 +10,9 @@ const MovieDetailsPage = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   const [showCast, setShowCast] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const backBtnRef = useRef();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -42,8 +45,19 @@ const MovieDetailsPage = () => {
     setShowCast(false);
   };
 
+  const handleGoBack = () => {
+    if (location.state && location.state.from) {
+      navigate(location.state.from.pathname);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <div className={styles.container}>
+      <button onClick={handleGoBack} ref={backBtnRef}>
+        Go back
+      </button>
       {movieDetails ? (
         <>
           <h2 className={styles.title}>{movieDetails.title}</h2>

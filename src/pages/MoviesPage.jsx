@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import MovieList from "../components/MovieList";
 import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
@@ -29,6 +29,8 @@ const MoviesPage = () => {
     fetchTrendingMovies();
   }, []);
 
+  useEffect(() => {}, [searchQuery]);
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -49,15 +51,7 @@ const MoviesPage = () => {
           className={styles.searchInput}
         />
       </div>
-      <ul className={styles.movieList}>
-        {filteredMovies.map((movie) => (
-          <li key={movie.id} className={styles.movieItem}>
-            <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
-              {movie.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={filteredMovies} />
     </div>
   );
 };

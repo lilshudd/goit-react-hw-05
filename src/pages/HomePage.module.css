@@ -6,30 +6,34 @@
 
 .title {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.movieList {
-  list-style: none;
-  padding: 0;
-}
-
-.movieItem {
   margin-bottom: 10px;
 }
 
-.movieLink {
-  text-decoration: none;
-  color: #333;
-  font-size: 18px;
-  display: block;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.list {
+  list-style-type: none;
+  padding: 0;
 }
 
-.movieLink:hover {
-  background-color: #f0f0f0;
+.item {
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #333;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #007bff;
+}
+
+.image {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 5px;
 }

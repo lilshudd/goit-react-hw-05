@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import MovieList from "../components/MovieList";
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -31,15 +31,8 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Trending Movies</h2>
-      <ul className={styles.movieList}>
-        {movies.map((movie) => (
-          <li key={movie.id} className={styles.movieItem}>
-            <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
-              {movie.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {}
+      <MovieList movies={movies} />
     </div>
   );
 };

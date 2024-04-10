@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./MovieCast.module.css";
 
-const MovieCast = ({ movieId }) => {
+const MovieCast = () => {
+  const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {

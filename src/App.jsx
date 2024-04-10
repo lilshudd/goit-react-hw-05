@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import HomePage from "./pages/HomePage";
-import MoviesPage from "./pages/MoviesPage";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
-import NotFoundPage from "./pages/NotFoundPage";
 import axios from "axios";
+
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const MoviesPage = React.lazy(() => import("./pages/MoviesPage"));
+const MovieDetailsPage = React.lazy(() => import("./pages/MovieDetailsPage"));
+const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -35,17 +36,17 @@ const App = () => {
   return (
     <>
       <Navigation />
-      <Routes>
-        {" "}
-        {}
-        <Route path="/" element={<HomePage movies={movies} />} />
-        <Route
-          path="/movies"
-          element={<MoviesPage movies={movies} setMovies={setMovies} />}
-        />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<HomePage movies={movies} />} />
+          <Route
+            path="/movies"
+            element={<MoviesPage movies={movies} setMovies={setMovies} />}
+          />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
