@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
   const [showReviews, setShowReviews] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const backBtnRef = useRef();
+  const previousPageRef = useRef("/");
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -35,6 +35,12 @@ const MovieDetailsPage = () => {
     fetchMovieDetails();
   }, [movieId]);
 
+  useEffect(() => {
+    if (location.state && location.state.from) {
+      previousPageRef.current = location.state.from.pathname;
+    }
+  }, [location.state]);
+
   const handleToggleCast = () => {
     setShowCast(!showCast);
     setShowReviews(false);
@@ -46,18 +52,12 @@ const MovieDetailsPage = () => {
   };
 
   const handleGoBack = () => {
-    if (location.state && location.state.from) {
-      navigate(location.state.from.pathname);
-    } else {
-      navigate("/");
-    }
+    navigate(previousPageRef.current);
   };
 
   return (
     <div className={styles.container}>
-      <button onClick={handleGoBack} ref={backBtnRef}>
-        Go back
-      </button>
+      <button onClick={handleGoBack}>Go back</button>
       {movieDetails ? (
         <>
           <h2 className={styles.title}>{movieDetails.title}</h2>
