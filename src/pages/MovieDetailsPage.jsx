@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
   const [showReviews, setShowReviews] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const previousPageRef = useRef("/");
+  const previousPageRef = useRef(location.state ? location.state.from : "/");
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -37,7 +37,7 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     if (location.state && location.state.from) {
-      previousPageRef.current = location.state.from.pathname;
+      previousPageRef.current = location.state.from;
     }
   }, [location.state]);
 

@@ -7,7 +7,14 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const query = searchParams.get("query");
+    if (query !== null) {
+      setSearchQuery(query);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -33,18 +40,12 @@ const MoviesPage = () => {
     };
 
     fetchMovies();
-  }, [searchQuery]);
-
-  useEffect(() => {
-    const query = searchParams.get("query");
-    if (query !== null) {
-      setSearchQuery(query);
-    }
-  }, [searchParams]);
+  }, [searchQuery, setSearchQuery]);
 
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-    searchParams.set("query", event.target.value);
+    const query = event.target.value;
+    setSearchQuery(query);
+    setSearchParams({ query: query });
   };
 
   return (
