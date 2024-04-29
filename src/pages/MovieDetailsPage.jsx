@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, NavLink } from "react-router-dom";
 import axios from "axios";
 import MovieCast from "../components/MovieCast";
 import MovieReviews from "../components/MovieReviews";
@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
   const [showReviews, setShowReviews] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const previousPageRef = useRef(location.state ? location.state.from : "/");
+  const previousPage = useRef(location.state ? location.state.from : "/");
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -37,7 +37,7 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     if (location.state && location.state.from) {
-      previousPageRef.current = location.state.from;
+      previousPage.current = location.state.from;
     }
   }, [location.state]);
 
@@ -52,7 +52,7 @@ const MovieDetailsPage = () => {
   };
 
   const handleGoBack = () => {
-    navigate(previousPageRef.current);
+    navigate(previousPage.current);
   };
 
   return (
@@ -77,11 +77,15 @@ const MovieDetailsPage = () => {
             </p>
           </div>
           <div className={styles.cast}>
-            <h3 onClick={handleToggleCast}>Cast</h3>
+            <NavLink to="#" onClick={handleToggleCast}>
+              <h3>Cast</h3>
+            </NavLink>
             {showCast && <MovieCast movieId={parseInt(movieId)} />}
           </div>
           <div className={styles.reviews}>
-            <h3 onClick={handleToggleReviews}>Reviews</h3>
+            <NavLink to="#" onClick={handleToggleReviews}>
+              <h3>Reviews</h3>
+            </NavLink>
             {showReviews && <MovieReviews movieId={parseInt(movieId)} />}
           </div>
         </>
